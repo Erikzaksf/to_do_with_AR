@@ -43,9 +43,12 @@ post("/tasks") do
   description = params.fetch("description")
   list_id = params.fetch("list_id").to_i()
   @list = List.find(list_id)
-  @task = Task.new({:description => description, :list_id => list_id})
-  @task.save()
-  erb(:list)
+  @task = Task.new({:description => description, :list_id => list_id, :done => false})
+  if @task.save()
+    erb(:success)
+  else
+    erb(:errors)
+  end
 end
 
 get("/lists/:id/edit") do
