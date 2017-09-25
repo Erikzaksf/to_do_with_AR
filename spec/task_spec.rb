@@ -35,6 +35,11 @@ require('spec_helper')
     end
   end
 
+  it("converts the name to lowercase") do
+    task = Task.create({:description => 'FINAGLE THE BUFFALO'})
+    expect(task.description()).to(eq("finagle the buffalo"))
+  end
+
   # describe(".all") do
   #   it("is empty at first") do
   #     expect(Task.all).to(eq([]))
