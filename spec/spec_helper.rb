@@ -2,8 +2,6 @@ ENV['RACK_ENV'] = 'test'
 require('rspec')
 require('pg')
 require("sinatra/activerecord")
-require('list')
-require('task')
 require('pry')
 
 
@@ -13,3 +11,4 @@ require('pry')
       task.destroy()
    end
  end
+end
