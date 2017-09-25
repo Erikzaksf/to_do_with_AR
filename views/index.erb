@@ -3,4 +3,17 @@
 <div class="container">
   <a href="/lists">View All Lists</a>
   <a href="/lists/new">Add New List</a>
+
+  <ul>
+    <% @tasks.each() do |task| %>
+      <li>
+        <%= task.description %>
+        <a href="/tasks/<%= task.id() %>/edit">
+          Update this task's description
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <p>Create a new task:</p>
 </div>

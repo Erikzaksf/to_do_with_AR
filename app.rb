@@ -9,6 +9,7 @@ require("pg")
 
 
 get('/') do
+  @tasks = Task.all()
   erb(:index)
 end
 
@@ -63,5 +64,19 @@ delete("/lists/:id") do
   @list = List.find(params.fetch("id").to_i)
   @list.delete
   @lists = List.all
+  erb(:index)
+end
+
+#ACTIVE RECORD RELATED
+get('/tasks/:id/edit') do
+  @task = Task.find(params.fetch("id").to_i())
+  erb(:task_edit)
+end
+
+patch("/tasks/:id") do
+  description = params.fetch("description")
+  @task = Task.find(params.fetch("id").to_i())
+  @task.update({:description => description})
+  @tasks = Task.all()
   erb(:index)
 end
