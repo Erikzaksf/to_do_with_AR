@@ -17,6 +17,11 @@ require('spec_helper')
     end
   end
 
+  it("validates presence of description") do
+    task = Task.new({:description => ""})
+    expect(task.save()).to(eq(false))
+  end
+
   describe("#list") do
     it("tells which list it belongs to") do
       test_list = List.create({:name => "list"})
